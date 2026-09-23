@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Coding Competition 2026 - Peserta 1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-glow glow-1"></div>
+    <div class="background-glow glow-2"></div>
+
+    <main class="container">
+        <!-- Badge -->
+        <div class="badge-wrapper">
+            <span class="pulse-dot"></span>
+            <span class="badge-text">Web Coding Competition 2026</span>
+        </div>
+
+        <!-- Title -->
+        <h1 class="main-title">
+            Deployed Successfully <br>
+            <span class="gradient-text">Peserta 1 Showcase</span>
+        </h1>
+
+        <p class="subtitle">
+            Aplikasi demo ini berhasil di-deploy ke server Coolify secara otomatis via Git repository.
+        </p>
+
+        <!-- Specs Cards Grid -->
+        <div class="grid-cards">
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <div class="card-content">
+                    <span class="card-label">CPU Allocated</span>
+                    <span class="card-value">1 vCPU</span>
+                    <span class="card-sub">Cgroup Enforced</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">💾</div>
+                <div class="card-content">
+                    <span class="card-label">Memory Allocated</span>
+                    <span class="card-value">2048 MB (2 GB)</span>
+                    <span class="card-sub">Swap Protected</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🌐</div>
+                <div class="card-content">
+                    <span class="card-label">Target Port</span>
+                    <span class="card-value">Port 4101</span>
+                    <span class="card-sub">HTTP 200 OK</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🛡️</div>
+                <div class="card-content">
+                    <span class="card-label">Isolation</span>
+                    <span class="card-value">Team Peserta-01</span>
+                    <span class="card-sub">Total Multi-tenant</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive API Test -->
+        <div class="api-box">
+            <div class="api-header">
+                <span class="api-title">Live Server Health API</span>
+                <button id="pingBtn" class="btn-primary" onclick="testApi()">⚡ Test API Ping</button>
+            </div>
+            <pre id="apiOutput" class="code-block">Klik tombol di atas untuk memeriksa status live server...</pre>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Powered by <strong>Coolify Host</strong> on Ubuntu 24.04 &bull; Web Coding Competition 2026</p>
+        </footer>
+    </main>
+
+    <script>
+        async function testApi() {
+            const btn = document.getElementById('pingBtn');
+            const out = document.getElementById('apiOutput');
+            btn.innerText = 'Testing...';
+            btn.disabled = true;
+
+            try {
+                const res = await fetch('/api/status');
+                const data = await res.json();
+                out.innerText = JSON.stringify(data, null, 2);
+                out.style.borderColor = '#10b981';
+            } catch (e) {
+                out.innerText = 'Error calling API: ' + e;
+                out.style.borderColor = '#ef4444';
+            } finally {
+                btn.innerText = '⚡ Test API Ping';
+                btn.disabled = false;
+            }
+        }
+        // Auto trigger on load
+        window.addEventListener('DOMContentLoaded', testApi);
+    </script>
+</body>
+</html>

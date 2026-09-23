@@ -1,0 +1,10 @@
+{
+  "name": "web-competition-demo",
+  "version": "1.0.0",
+  "description": "Sample application for Web Coding Competition 2026",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {}
+}
